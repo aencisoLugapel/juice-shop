@@ -1,7 +1,6 @@
-#code {
-  width: 63em;
-}
+@use '../../styles/variables' as *;
 
-.wrapper {
-  padding-top: 16px;
+:host {
+  display: block;
+  padding-top: $space-m;
 }

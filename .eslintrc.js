@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
+ * Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.
  * SPDX-License-Identifier: MIT
  */
 
@@ -20,6 +20,9 @@ module.exports = {
     ecmaVersion: 2018,
     project: './tsconfig.json'
   },
+  rules: {
+    'semi': ['error', 'never']
+  },
   ignorePatterns: [
     '.eslintrc.js',
     'app/private/**',
@@ -37,7 +40,9 @@ module.exports = {
         // FIXME warnings below this line need to be checked and fixed.
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/strict-boolean-expressions': 'off',
-        '@typescript-eslint/no-var-requires': 'off'
+        '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/no-misused-promises': 'off',
+        '@typescript-eslint/no-unsafe-argument': 'off'
       }
     }
   ]

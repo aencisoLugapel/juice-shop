@@ -1,12 +1,13 @@
 /*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
+ * Copyright (c) 2014-2026 Bjoern Kimminich & the OWASP Juice Shop contributors.
  * SPDX-License-Identifier: MIT
  */
 
-import frisby = require('frisby')
+import * as frisby from 'frisby'
 import config from 'config'
+
 import type { Product as ProductConfig } from '../../lib/config.types'
-const utils = require('../../lib/utils')
+import * as utils from '../../lib/utils'
 
 const URL = 'http://localhost:3000'
 
@@ -24,8 +25,8 @@ describe('Server', () => {
     return frisby.get(URL)
       .expect('status', 200)
       .expect('header', 'content-type', /text\/html/)
+      .expect('bodyContains', 'scripts.js')
       .expect('bodyContains', 'main.js')
-      .expect('bodyContains', 'runtime.js')
       .expect('bodyContains', 'polyfills.js')
   })
 
@@ -33,8 +34,8 @@ describe('Server', () => {
     return frisby.get(URL + '/whatever')
       .expect('status', 200)
       .expect('header', 'content-type', /text\/html/)
+      .expect('bodyContains', 'scripts.js')
       .expect('bodyContains', 'main.js')
-      .expect('bodyContains', 'runtime.js')
       .expect('bodyContains', 'polyfills.js')
   })
 
@@ -167,7 +168,7 @@ describe('Hidden URL', () => {
   })
 
   it('GET crazy cat photo for "Missing Encoding" challenge', () => {
-    return frisby.get(URL + '/assets/public/images/uploads/%F0%9F%98%BC-%23zatschi-%23whoneedsfourlegs-1572600969477.jpg')
+    return frisby.get(URL + '/assets/public/images/uploads/%E1%93%9A%E1%98%8F%E1%97%A2-%23zatschi-%23whoneedsfourlegs-1572600969477.jpg')
       .expect('status', 200)
   })
 
